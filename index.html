@@ -3,26 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tilføj arrangement til kalender</title>
+  <title>Samvinnan – Tilføj kalender</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 24px; max-width: 720px; }
-    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
-    a.btn {
-      display: block; text-decoration: none; padding: 14px 16px;
-      border-radius: 10px; border: 1px solid #ccc; margin: 10px 0;
-    }
+    body { font-family: -apple-system, Arial, sans-serif; margin: 24px; max-width: 720px; }
+    .card { border: 1px solid #ddd; border-radius: 14px; padding: 16px; }
+    .btn { display:block; padding:14px 16px; margin:10px 0; border:1px solid #ccc; border-radius:12px; text-decoration:none; }
+    .small { color:#555; font-size: 0.95rem; }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Ársveitsla</h1>
-    <p><b>Dato:</b> 4. februar 2026</p>
-    <p><b>Tid:</b> 18:00–</p>
-    <p><b>Sted:</b> Kollegiet Sofiegården</p>
+    <h1>Samvinnan – Kalendari</h1>
+    <p class="small">Brúkar tú iOS ella Android? Vel niðanfyri:</p>
 
-    <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%C3%81rsveitsla%20%C3%A1%20Sofieg%C3%A5rden&dates=20260206T180000%2F20260208T040000&ctz=Europe%2FCopenhagen&details=Ta%C3%B0%20er%20einafer%C3%B0%20um%20%C3%A1ri%C3%B0&location=Sofiegade%201%2C%201418%20K%C3%B8benhavn">📅 Tilføj til Google Kalender</a>
+    <a id="appleBtn" class="btn" href="#">🍏 iOS: Abonnér (auto)</a>
+    <a id="googleBtn" class="btn" href="#">🤖 Android/Google: Tilføj kalender</a>
 
-    <a class="btn" href="./event.ics">🍏 Tilføj til Apple Kalender (ICS)</a>
+    <p class="small">
+      Hvis auto-åbning ikke virker: tryk på knapperne ovenfor.
+    </p>
   </div>
+
+  <script>
+    // 1) INDSÆT DINE 2 LINKS HER:
+    const APPLE_WEBCAL = "webcal://calendar.google.com/calendar/embed?src=1978376711bfdb39738c9567d9e7480a0765fc010b4225df7febcfdcc2c8214e%40group.calendar.google.com&ctz=Europe%2FCopenhagen";
+    const GOOGLE_CID   = "https://calendar.google.com/calendar/u/0?cid=MTk3ODM3NjcxMWJmZGIzOTczOGM5NTY3ZDllNzQ4MGEwNzY1ZmMwMTBiNDIyNWRmN2ZlYmNmZGNjMmM4MjE0ZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+
+
+    // Sæt knapperne
+    document.getElementById("appleBtn").href = APPLE_WEBCAL;
+    document.getElementById("googleBtn").href = GOOGLE_CID;
+
+    // 2) Auto-detektion
+    const ua = navigator.userAgent || "";
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    const isMac = /Macintosh/i.test(ua); // Mac kan også subscribe i Calendar-appen
+
+    // iPhone/iPad: prøv auto-open webcal
+    if (isIOS) {
+      setTimeout(() => { window.location.href = APPLE_WEBCAL; }, 250);
+    }
+
+    // Android: auto-send til Google add link (mildt — knappen er fallback)
+    // (Hvis du ikke vil auto-redirect på Android, så fjern blokken herunder)
+    const isAndroid = /Android/i.test(ua);
+    if (isAndroid) {
+      setTimeout(() => { window.location.href = GOOGLE_CID; }, 250);
+    }
+  </script>
 </body>
 </html>

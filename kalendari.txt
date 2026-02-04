@@ -10,3 +10,12 @@
 20-jun Summargrill
 10-jul Virkisvitjan í Januar?
 8-okt aðalfundur
+
+
+
+apple-link (ical): 
+webcal://calendar.google.com/calendar/embed?src=1978376711bfdb39738c9567d9e7480a0765fc010b4225df7febcfdcc2c8214e%40group.calendar.google.com&ctz=Europe%2FCopenhagen
+
+
+google calendar:
+https://calendar.google.com/calendar/u/0?cid=MTk3ODM3NjcxMWJmZGIzOTczOGM5NTY3ZDllNzQ4MGEwNzY1ZmMwMTBiNDIyNWRmN2ZlYmNmZGNjMmM4MjE0ZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t
